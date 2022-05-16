@@ -16,6 +16,10 @@ const FsUtils = require('./src/fsUtils');
 const EventManager = require('./src/eventManager');
 const Benchmarks = require('./src/benchmarks');
 
+const ResourceProcessor = require('./src/gf/resourceProcessor');
+const AssetProcessor = require('./src/gf/assetProcessor');
+const TemplateProcessor = require('./src/gf/templateProcessor');
+
 module.exports = {
     Logger,
     syslog,
@@ -26,5 +30,9 @@ module.exports = {
     CacheGroup,
     FsUtils,
     EventManager,
-    Benchmarks
+    Benchmarks,
+
+    ResourceProcessor,
+    AssetProcessor,
+    TemplateProcessor
 };
