@@ -1,0 +1,45 @@
+{
+	"name": "greenfedora-utils",
+	"version": "0.1.0",
+	"description": "Common utilities for GreenFedora.",
+	"homepage": "https://gordonansell.com/greenfedora",
+	"license": "MIT",
+	"minimum-stability": "dev",
+	"main": "index.js",
+    "scripts": {
+    },
+    "bin": {
+        "greenfedora": "./index.js"
+    },
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gordon-ansell/greenfedora-utils"
+	},
+	"authors": [
+		{
+			"name": "Gordon Ansell",
+			"email": "contact@gordonansell.com",
+			"url": "https://gordonansell.com"
+		}
+	],
+	"files": [
+		"src/"
+	],
+    "keywords": [
+        "static-site-generator",
+        "ssg"
+    ],
+	"dependencies": {
+        "debug": "^4.3.4",
+        "deepmerge": "^4.2.2",
+        "is-plain-object": "^5.0.0",
+        "kleur": "^4.1.4",
+        "lodash": "^4.17.21",
+        "normalize-path": "^3.0.0"
+	},
+	"devDependencies": {
+    },
+	"engines": {
+		"node": ">=16"
+	}
+}
