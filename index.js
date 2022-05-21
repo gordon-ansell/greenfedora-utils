@@ -9,6 +9,7 @@
 const { Logger, syslog } = require('./src/logger');
 const GfError = require('./src/gfError');
 const GfPath = require('./src/gfPath');
+const GfString = require('./src/gfString');
 const Merge = require('./src/merge');
 const Cache = require('./src/cache');
 const CacheGroup = require('./src/cacheGroup');
@@ -27,6 +28,7 @@ module.exports = {
     syslog,
     GfError,
     GfPath,
+    GfString,
     Merge,
     Cache,
     CacheGroup,
