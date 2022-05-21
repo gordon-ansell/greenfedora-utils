@@ -20,6 +20,8 @@ const ResourceProcessor = require('./src/gf/resourceProcessor');
 const AssetProcessor = require('./src/gf/assetProcessor');
 const TemplateProcessor = require('./src/gf/templateProcessor');
 
+const NunjucksShortcode = require('./src/gf/template/nunjucksShortcode');
+
 module.exports = {
     Logger,
     syslog,
@@ -34,5 +36,7 @@ module.exports = {
 
     ResourceProcessor,
     AssetProcessor,
-    TemplateProcessor
+    TemplateProcessor,
+
+    NunjucksShortcode
 };
