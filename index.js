@@ -10,6 +10,7 @@ const { Logger, syslog } = require('./src/logger');
 const GfError = require('./src/gfError');
 const GfPath = require('./src/gfPath');
 const GfString = require('./src/gfString');
+const GfRegex = require('./src/gfRegex');
 const Merge = require('./src/merge');
 const Cache = require('./src/cache');
 const CacheGroup = require('./src/cacheGroup');
@@ -23,12 +24,19 @@ const TemplateProcessor = require('./src/gf/templateProcessor');
 
 const NunjucksShortcode = require('./src/gf/template/nunjucksShortcode');
 
+const HtmlAttribs = require('./src/html/htmlAttribs');
+const HtmlGenerator = require('./src/html/htmlGenerator');
+const HtmlFigure = require('./src/html/htmlFigure');
+const ComplexImage = require('./src/html/ComplexImage');
+
+
 module.exports = {
     Logger,
     syslog,
     GfError,
     GfPath,
     GfString,
+    GfRegex,
     Merge,
     Cache,
     CacheGroup,
@@ -40,5 +48,10 @@ module.exports = {
     AssetProcessor,
     TemplateProcessor,
 
-    NunjucksShortcode
+    NunjucksShortcode,
+
+    HtmlAttribs,
+    HtmlGenerator,
+    HtmlFigure,
+    ComplexImage
 };
