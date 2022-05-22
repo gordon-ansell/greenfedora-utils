@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 const GfError = require('./gfError');
 const GfRegex = require('./gfRegex');
 

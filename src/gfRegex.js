@@ -7,6 +7,7 @@
 'use strict';
 
 const { GfError } = require('./gfError');
+const path = require('path');
 
 /**
  * Regex utils.
@@ -30,7 +31,7 @@ class GfRegex
             if (ap != '') {
                 ap += '|';
             }
-            ap += regexEscape(p);
+            ap += GfRegex.regexEscape(p);
         });
 
         return ap;
@@ -53,7 +54,7 @@ class GfRegex
             if (ap != '') {
                 ap += '|';
             }
-            ap += regexEscape(p);
+            ap += GfRegex.regexEscape(p);
         });
 
         return ap;
@@ -76,7 +77,7 @@ class GfRegex
             if (ap != '') {
                 ap += '|';
             }
-            ap += regexEscape(p);
+            ap += GfRegex.regexEscape(p);
         });
 
         return ap;
