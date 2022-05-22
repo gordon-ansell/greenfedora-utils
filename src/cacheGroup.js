@@ -132,6 +132,26 @@ class CacheGroup
     }
 
     /**
+     * Get an array of kets, values or entries.
+     * 
+     * @param   {keys|values|entries|map}   [format=map]    Format to get.
+     * 
+     * @return  {Map|object[]|string[]}
+     */
+    getInternals(format = 'map')
+    {
+        if ("values" === format) {
+            return [...this.#data.values()];
+        } else if ("entries" === format) {
+            return [...this.#data.entries()]
+        } else if ("keys" === format) {
+            return [...this.#data.keys()]
+        }
+        return this.#data;
+
+    }
+
+    /**
      * Load a cache group from disk.
      * 
      * @param   {string}        filePath    Path to load from.
