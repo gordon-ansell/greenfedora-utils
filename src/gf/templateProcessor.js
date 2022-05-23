@@ -17,7 +17,7 @@ class TemplateProcessor extends ResourceProcessor
      * Preprocessors.
      * @member  {object[]} 
      */
-    preProcessors = [];
+    preprocessors = [];
 
     /**
      * Constructor.
@@ -42,7 +42,7 @@ class TemplateProcessor extends ResourceProcessor
      */
     addPreprocessor(pp)
     {
-        this.preProcessors.push(pp);
+        this.preprocessors.push(pp);
         return this;
     }
 

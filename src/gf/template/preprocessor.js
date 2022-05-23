@@ -6,7 +6,7 @@
  */
 'use strict';
 
-const { GfError } = require('../../gfError');
+const GfError = require('../../gfError');
 
 class GfPreprocessorError extends GfError {};
 
@@ -40,7 +40,6 @@ class Preprocessor
         this.name = name;
         this.config = config;
     }
-
 
     /**
      * Preprocess a string.

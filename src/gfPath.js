@@ -116,6 +116,20 @@ class GfPath
     }
 
     /**
+     * Remove last segment.
+     * 
+     * @param   {string}    str     String to frig.
+     * 
+     * @return  {string}
+     */
+    static removeLastSeg(str)
+    {
+        let sp = str.split('/');
+        sp.pop();
+        return sp.join('/');
+    }
+
+    /**
      * Add data to an object at the depth specified by a path.
      * 
      * @param   {string}    inputPath   Input path.
