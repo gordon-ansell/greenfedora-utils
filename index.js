@@ -23,6 +23,7 @@ const AssetProcessor = require('./src/gf/assetProcessor');
 const TemplateProcessor = require('./src/gf/templateProcessor');
 
 const NunjucksShortcode = require('./src/gf/template/nunjucksShortcode');
+const Preprocessor = require('./src/gf/template/preprocessor');
 
 const HtmlAttribs = require('./src/html/htmlAttribs');
 const HtmlGenerator = require('./src/html/htmlGenerator');
@@ -49,6 +50,7 @@ module.exports = {
     TemplateProcessor,
 
     NunjucksShortcode,
+    Preprocessor,
 
     HtmlAttribs,
     HtmlGenerator,

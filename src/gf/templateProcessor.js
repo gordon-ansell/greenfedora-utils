@@ -14,6 +14,12 @@ const debug = require("debug")("GreenFedora-Utils:TemplateProcessor");
 class TemplateProcessor extends ResourceProcessor
 {
     /**
+     * Preprocessors.
+     * @member  {object[]} 
+     */
+    preProcessors = [];
+
+    /**
      * Constructor.
      * 
      * @param   {Config}    config              Configs.
@@ -25,6 +31,19 @@ class TemplateProcessor extends ResourceProcessor
     constructor(config, options = {}, engineOptions = {})
     {
         super(config, options, engineOptions);
+    }
+
+    /**
+     * Add a preprocessor.
+     * 
+     * @param   {object}    pp      Preprocessor object.
+     * 
+     * @return  {TemplateProcessor}
+     */
+    addPreprocessor(pp)
+    {
+        this.preProcessors.push(pp);
+        return this;
     }
 
     /**

@@ -19,26 +19,35 @@ class NunjucksShortcode
 {
     /**
      * Tags.
+     * @member  {string[]}
      */
     tags = null;
 
     /**
      * Config.
+     * @member  {Config}
      */
     config = null;
 
     /**
      * Paired?
+     * @member  {boolean}
      */
     paired = false;
 
     /**
      * Async?
+     * @member  {boolean}
      */
     isasync = false;
 
     /**
      * Constructor.
+     * 
+     * @param   {string|string[]}   tags            Shortcode tags.
+     * @param   {Config}            config          Config object.
+     * @param   {boolean}           [paired=false]  Paired shortcode?
+     * @param   {boolean}           [isasync=false] Async shortcode?
      */
     constructor(tags, config, paired = false, isasync = false)
     {
