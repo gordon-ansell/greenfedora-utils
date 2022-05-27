@@ -45,13 +45,12 @@ class Preprocessor
      * Preprocess a string.
      * 
      * @param   {string}    content     Content to preprocess.
-     * @param   {string}    permalink   Permalink for post.
      * @param   {string}    filePath    File path.
      * @param   {boolean}   [rss=false] For RSS?
      * 
      * @return  {string}
      */
-    preprocessString(content, permalink, filePath, rss = false)
+    preprocessString(content, filePath, rss = false)
     {
         throw new GfPreprocessorError(`You must override the 'preprocessString' method.`)
     }
