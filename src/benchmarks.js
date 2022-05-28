@@ -83,7 +83,7 @@ class Benchmarks
     markStart(tag, desc)
     {
         if (this.tags[tag]) {
-            syslog.warning(`Benchmark tag '${tag}' already exists, will be overwritten.`);
+            debug(`Benchmark tag '${tag}' already exists, will be overwritten.`);
         }
         this.tags[tag] = desc;
         performance.mark(`${tag}-start`);
