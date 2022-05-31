@@ -188,7 +188,7 @@ class NunjucksShortcode
     /**
      * Render async paired.
      */
-     async renderAsyncPaired(context, args, body)
+     async renderAsyncPaired(context, body, args)
      {
          throw new NunjucksShortcodeError(`You must override the 'renderAsyncPaired' method.`)
      }
