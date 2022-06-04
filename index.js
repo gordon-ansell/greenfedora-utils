@@ -12,9 +12,9 @@ const GfPath = require('./src/gfPath');
 const GfString = require('./src/gfString');
 const GfRegex = require('./src/gfRegex');
 const Merge = require('./src/merge');
-const Cache = require('./src/cache');
-const CacheGroup = require('./src/cacheGroup');
+const FileCache = require('./src/fileCache');
 const FsUtils = require('./src/fsUtils');
+const MD5 = require('./src/md5');
 const EventManager = require('./src/eventManager');
 const Benchmarks = require('./src/benchmarks');
 
@@ -39,9 +39,9 @@ module.exports = {
     GfString,
     GfRegex,
     Merge,
-    Cache,
-    CacheGroup,
+    FileCache,
     FsUtils,
+    MD5,
     EventManager,
     Benchmarks,
 

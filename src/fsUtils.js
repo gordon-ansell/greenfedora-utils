@@ -11,6 +11,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const GfError = require('./gfError');
 const GfRegex = require('./gfRegex');
+const { syslog } = require('./logger');
 
 /**
  * File system utilities.
@@ -75,14 +76,13 @@ class FsUtils
      * Clean a directory.
      * 
      * @param   {string}    dir     Directory to clean.
-     * @param   {string}    qual    Qualifier.
      * 
      * @return  {boolean}           True if we cleaned it, else false.
      */
-    static cleanDir(dir, qual = '*')
+    static cleanDir(dir)
     {
         if (fs.existsSync(dir)) {
-            rimraf.sync(path.join(dir, qual));
+            rimraf.sync(dir, {glob: false});
             return true;
         }
         return false;

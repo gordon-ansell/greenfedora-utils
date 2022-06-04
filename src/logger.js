@@ -289,6 +289,7 @@ class Logger {
     {
         if (this.shouldDisplay(level, force)) {
 
+            msg = String(msg);
             if (indent > 0) {
                 let sp = msg.split("\n");
                 let lines = [];
