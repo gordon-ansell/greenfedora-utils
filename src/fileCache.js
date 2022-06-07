@@ -19,7 +19,7 @@ class GfFileCacheError extends GfError {};
 /**
  * File cache.
  */
-class CacheGroup
+class FileCache
 {
     /**
      * Cache path.
@@ -80,17 +80,12 @@ class CacheGroup
     save()
     {
         if (!fs.existsSync(path.dirname(this.cachePath))) {
-            fs.mkdir(path.dirname(this.cachePath), {recurse: true}, (err) => {
-                let serialised = JSON.stringify(Array.from(this.data.entries()));
-                fs.writeFile(this.cachePath, serialised, 'utf8', (err) => {
-                    debug(`Saving cache to ${this.cachePath}.`);
-                });
-            });
+            fs.mkdirSync(path.dirname(this.cachePath), {recurse: true});
+            let serialised = JSON.stringify(Array.from(this.data.entries()));
+            fs.writeFileSync(this.cachePath, serialised, 'utf8');
         } else {
             let serialised = JSON.stringify(Array.from(this.data.entries()));
-            fs.writeFile(this.cachePath, serialised, 'utf8', (err) => {
-                debug(`Saving cache to ${this.cachePath}.`);
-            });
+            fs.writeFileSync(this.cachePath, serialised, 'utf8');
         }
     }
 
@@ -203,4 +198,4 @@ class CacheGroup
     }
 }
 
-module.exports = CacheGroup;
+module.exports = FileCache;
