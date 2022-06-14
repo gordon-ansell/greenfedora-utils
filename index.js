@@ -17,6 +17,7 @@ const FsUtils = require('./src/fsUtils');
 const MD5 = require('./src/md5');
 const EventManager = require('./src/eventManager');
 const Benchmarks = require('./src/benchmarks');
+const duration = require('./src/duration');
 
 const ResourceProcessor = require('./src/gf/resourceProcessor');
 const AssetProcessor = require('./src/gf/assetProcessor');
@@ -44,6 +45,7 @@ module.exports = {
     MD5,
     EventManager,
     Benchmarks,
+    duration,
 
     ResourceProcessor,
     AssetProcessor,
