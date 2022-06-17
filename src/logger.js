@@ -41,6 +41,7 @@ class Logger {
         debug: "blue",
         info: "green",
         log: "reset",
+        notice: ["reset", "bold"],
         warn: "red",
         error: ["bold", "red"]
     };
@@ -54,8 +55,9 @@ class Logger {
         debug: 20,
         info: 30,
         log: 40,
-        warn: 50,
-        error: 60,
+        notice: 50,
+        warn: 60,
+        error: 70,
         silence: 999999
     };
 
@@ -199,7 +201,7 @@ class Logger {
     }
 
     /**
-     * Output a log message.
+     * Output a notice message.
      * 
      * @param   {string}                                msg             Message to output.
      * 
@@ -207,7 +209,7 @@ class Logger {
      */
     notice(msg) 
     {
-        this.log(msg);
+        this.msg(msg, 'notice');
     }
 
     /**
@@ -303,10 +305,15 @@ class Logger {
 
             msg = `${tag} ${msg.split("\n").join("\n" + tag)}`;
 
+            let cc = level;
+            if ('notice' === cc) {
+                cc = 'log';
+            }
+
             if (Array.isArray(this._cols[level])) {
-                console[level](kleur[this._cols[level][0]]()[this._cols[level][1]](msg));
+                console[cc](kleur[this._cols[level][0]]()[this._cols[level][1]](msg));
             } else {
-                console[level](kleur[this._cols[level]](msg));
+                console[cc](kleur[this._cols[level]](msg));
             }
 
         }

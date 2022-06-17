@@ -33,6 +33,7 @@
         "debug": "^4.3.4",
         "deepmerge": "^4.2.2",
         "is-plain-object": "^5.0.0",
+        "json-stringify-safe": "*",
         "kleur": "^4.1.4",
         "lodash": "^4.17.21",
         "normalize-path": "^3.0.0",

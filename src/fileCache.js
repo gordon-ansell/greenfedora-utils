@@ -11,6 +11,8 @@ const path = require('path');
 const FsUtils = require('./fsUtils');
 const GfError = require('./gfError');
 const GfPath = require('./gfPath');
+const { syslog } = require('./logger');
+const MD5 = require('./md5');
 const debug = require("debug")("GreenFedora-Util:FileCache");
 
 // Local error.
@@ -40,17 +42,25 @@ class FileCache
     data = {};
 
     /**
+     * Check type.
+     * @member  {string}
+     */
+    checkType = 'stats';
+
+    /**
      * Constructor.
      * 
      * @param   {string}        cachePath               Path to the actual cache.
      * @param   {string}        sitePath                Site path.
+     * @param   {string}        checkType               Type to check.
      * 
      * @return  {FileCache}
      */
-    constructor(cachePath, sitePath)
+    constructor(cachePath, sitePath, checkType = 'stats')
     {
         this.cachePath = cachePath;
         this.sitePath = sitePath;
+        this.checkType = checkType;
         this.data = new Map();
     }
 
@@ -102,18 +112,42 @@ class FileCache
         let filePath = path.join(this.sitePath, name);
         let current = fs.statSync(filePath);
 
-        if (!this.has(name)) {
-            debug(`File '${name}' new to cache with values, mtime: ${current.mtimeMs}, size: ${current.size}.`);
-            this.add(name, {mtimeMs: current.mtimeMs, size: current.size});
-            return true;
-        }
+        if ('stats' === this.checkType) {
 
-        let cached = this.get(name);
+            if (!this.has(name)) {
+                debug(`File '${name}' new to cache with values, mtime: ${current.mtimeMs}, size: ${current.size}.`);
+                this.add(name, {mtimeMs: current.mtimeMs, size: current.size});
+                return true;
+            }
 
-        if (current.mtimeMs > cached.mtimeMs || current.size !== cached.size) {
-            debug(`File '${name}' has been modified, updating cache, mtime: ${current.mtimeMs}, size: ${current.size}.`);
-            this.set(name, {mtimeMs: current.mtimeMs, size: current.size});
-            return true;
+            let cached = this.get(name);
+
+            if (current.mtimeMs > cached.mtimeMs || current.size !== cached.size) {
+                debug(`File '${name}' has been modified, updating cache, mtime: ${current.mtimeMs}, size: ${current.size}.`);
+                this.set(name, {mtimeMs: current.mtimeMs, size: current.size});
+                return true;
+            }
+
+        } else if ('md5' === this.checkType) {
+
+            let md5 = (new MD5).md5(fs.readFileSync(filePath, 'utf-8'));
+
+            if (!this.has(name)) {
+                debug(`File '${name}' new to cache with values, size: ${current.size}, md5: ${md5}.`);
+                this.add(name, {md5: md5, size: current.size});
+                return true;
+            }
+
+            let cached = this.get(name);
+
+            if (md5 !== cached.md5 || current.size !== cached.size) {
+                debug(`File '${name}' has been modified, updating cache, size: ${current.size}, md5: ${md5}.`);
+                this.set(name, {md5: md5, size: current.size});
+                return true;
+            }
+         
+        } else {
+            throw new GfFileCacheError(`Invalid cache check type ${this.checkType}.`);          
         }
 
         debug(`File ${name} is cached but has not been modified.`);
