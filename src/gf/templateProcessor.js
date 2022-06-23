@@ -20,6 +20,12 @@ class TemplateProcessor extends ResourceProcessor
     preprocessors = [];
 
     /**
+     * Postprocessors.
+     * @member  {object[]}
+     */
+    postprocessors = [];
+
+    /**
      * Constructor.
      * 
      * @param   {Config}    config              Configs.
@@ -47,19 +53,29 @@ class TemplateProcessor extends ResourceProcessor
     }
 
     /**
+     * Add a postprocessor.
+     * 
+     * @param   {object}    pp      Preprocessor object.
+     * 
+     * @return  {TemplateProcessor}
+     */
+    addPostprocessor(pp)
+    {
+        this.postprocessors.push(pp);
+        return this;
+    }
+
+    /**
      * See if the passed string needs compilation.
      * 
      * @param   {string}    str     String to check.
+     * @param   {object}    tagOpts Tag options.
      * 
      * @return  {boolean}   
      */
-    needsCompliation(str)
+    needsCompliation(str, tagOpts = {})
     {
-        let tags = {};
-
-        if (this.engine.options && this.engine.options.tags) {
-            tags = this.engine.options.tags;
-        }
+        let tags = tagOpts;
 
         let bs = tags.blockStart || "{%";
         let vs = tags.variableStart || "{{";

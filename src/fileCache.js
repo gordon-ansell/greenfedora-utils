@@ -128,6 +128,20 @@ class FileCache
                 return true;
             }
 
+        } else if ('statsdata' === this.checkType) {
+
+            if (!this.has(name)) {
+                debug(`File '${name}' new to cache with values, mtime: ${current.mtimeMs}, size: ${current.size}.`);
+                return true;
+            }
+
+            let cached = this.get(name);
+
+            if (current.mtimeMs > cached.mtimeMs || current.size !== cached.size) {
+                debug(`File '${name}' has been modified, updating cache, mtime: ${current.mtimeMs}, size: ${current.size}.`);
+                return true;
+            }
+
         } else if ('md5' === this.checkType) {
 
             let md5 = (new MD5).md5(fs.readFileSync(filePath, 'utf-8'));
