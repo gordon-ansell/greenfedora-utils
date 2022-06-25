@@ -103,10 +103,11 @@ class FileCache
      * Run a cache check.
      * 
      * @param   {string}    name    Name to run it against.
+     * @param   {boolean}   autoup  Auto update?
      * 
      * @return  {boolean}           True if file has been modified, else false.
      */
-    check(name)
+    check(name, autoup = true)
     {
         name = GfPath.addLeadingSlash(name.replace(this.sitePath, ''));
         let filePath = path.join(this.sitePath, name);
@@ -116,7 +117,9 @@ class FileCache
 
             if (!this.has(name)) {
                 debug(`File '${name}' new to cache with values, mtime: ${current.mtimeMs}, size: ${current.size}.`);
-                this.add(name, {mtimeMs: current.mtimeMs, size: current.size});
+                if (autoup) {
+                    this.add(name, {mtimeMs: current.mtimeMs, size: current.size});
+                }
                 return true;
             }
 
@@ -124,7 +127,9 @@ class FileCache
 
             if (current.mtimeMs > cached.mtimeMs || current.size !== cached.size) {
                 debug(`File '${name}' has been modified, updating cache, mtime: ${current.mtimeMs}, size: ${current.size}.`);
-                this.set(name, {mtimeMs: current.mtimeMs, size: current.size});
+                if (autoup) {
+                    this.set(name, {mtimeMs: current.mtimeMs, size: current.size});
+                }
                 return true;
             }
 
@@ -178,6 +183,7 @@ class FileCache
      */
     has(name)
     {
+        name = GfPath.addLeadingSlash(name.replace(this.sitePath, ''));
         return this.data.has(name);
     }
 
@@ -190,6 +196,7 @@ class FileCache
      */
     get(name)
     {
+        name = GfPath.addLeadingSlash(name.replace(this.sitePath, ''));
         if (this.has(name)) {
             return this.data.get(name);
         }
@@ -206,6 +213,7 @@ class FileCache
      */
     set(name, val)
     {
+        name = GfPath.addLeadingSlash(name.replace(this.sitePath, ''));
         this.data.set(name, val);
         return this;
     }
@@ -222,6 +230,7 @@ class FileCache
      */
     add(name, val)
     {
+        name = GfPath.addLeadingSlash(name.replace(this.sitePath, ''));
         if (this.has(name)) {
             throw new GfFileCacheError(`We already have a cache item called '${name}'. Maybe use 'set' instead?`);
         }
@@ -239,6 +248,7 @@ class FileCache
      */
     del(name)
     {
+        name = GfPath.addLeadingSlash(name.replace(this.sitePath, ''));
         if (this.has(name)) {
             delete this.data.delete(name);
         }
