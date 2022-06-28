@@ -6,11 +6,6 @@
 	"license": "MIT",
 	"minimum-stability": "dev",
 	"main": "index.js",
-    "scripts": {
-    },
-    "bin": {
-        "greenfedora": "./index.js"
-    },
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/gordon-ansell/greenfedora-utils"
@@ -39,8 +34,6 @@
         "normalize-path": "^3.0.0",
         "rimraf": "^3.0.2"
 	},
-	"devDependencies": {
-    },
 	"engines": {
 		"node": ">=16"
 	}
