@@ -35,6 +35,9 @@ class GfPath
      */
     static addTrailingSlash(p)
     {
+        if ('/' === p || '' === p) {
+            return '/';
+        }
         if (path.sep !== p.charAt(p.length - 1)) {
             return p + path.sep;
         }
@@ -51,6 +54,9 @@ class GfPath
      */
     static addLeadingSlash(str)
     {
+        if ('/' === str || '' === str) {
+            return '/';
+        }
         if (!str.startsWith('/')) {
             return '/' + str;
         }
@@ -96,6 +102,9 @@ class GfPath
      */
     static removeLeadingSlash(str)
     {
+        if (!str) {
+            return str;
+        }
         if (str.startsWith('/')) {
             return str.substring(1);
         }

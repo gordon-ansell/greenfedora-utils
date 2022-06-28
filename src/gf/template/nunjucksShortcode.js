@@ -8,6 +8,7 @@
 
 const { syslog } = require('../../logger');
 const GfError = require('../../gfError');
+const debug = require("debug")("GreenFedora-Utils:NunjucksShortcode");
 
 class GfNunjucksShortcodeError extends GfError {}
 
@@ -124,7 +125,7 @@ class NunjucksShortcode
                     })
                     .catch(function (e) {
                         resolve(
-                            new GfNunjucksShortcodeError(`Error with Nunjucks shortcode '${this.tags[0]}': ${e.message}`, null, e),
+                            new GfNunjucksShortcodeError(`Error with Nunjucks (paired, async) shortcode '${this.tags[0]}': ${e.message}`, null, e),
                             null
                         );
                     });
@@ -136,7 +137,7 @@ class NunjucksShortcode
                     })
                     .catch(function (e) {
                         resolve(
-                            new GfNunjucksShortcodeError(`Error with Nunjucks shortcode '${this.tags[0]}': ${e.message}`, null, e),
+                            new GfNunjucksShortcodeError(`Error with Nunjucks (async) shortcode '${this.tags[0]}': ${e.message}`, null, e),
                             null
                         );
                     });                
@@ -155,7 +156,7 @@ class NunjucksShortcode
                 return this.safe(ret);
         
             } catch (e) {
-                throw new GfNunjucksShortcodeError(`Error with Nunjucks shortcode '${this.tags[0]}': ${e.message}`, null, e);
+                throw new GfNunjucksShortcodeError(`Error with Nunjucks (std) shortcode '${this.tags[0]}': ${e.message}`, null, e);
             }
         }
 
@@ -188,10 +189,10 @@ class NunjucksShortcode
     /**
      * Render async paired.
      */
-     async renderAsyncPaired(context, body, args)
-     {
-         throw new NunjucksShortcodeError(`You must override the 'renderAsyncPaired' method.`)
-     }
+    async renderAsyncPaired(context, body, args)
+    {
+        throw new NunjucksShortcodeError(`You must override the 'renderAsyncPaired' method.`)
+    }
  }
 
 module.exports = NunjucksShortcode;

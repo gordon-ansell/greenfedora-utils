@@ -364,10 +364,11 @@ class Logger {
      * @param   {string|null}                                   [header=null]   Message to precede inspect.
      * @param   {'error'|'warn'|'log'|'info'|'debug'|'trace'}   [level='warn']  Message level.
      * @param   {boolean}                                       [force=false]   Force logging.
+     * @param   {number}                                        [depth=2]       Depth of debugging.
      * 
      * @return  {void}
      */
-    inspect(obj, header = null, level = 'warn', force = false)
+    inspect(obj, header = null, level = 'warn', force = false, depth = 2)
     {
 
         if (this.shouldDisplay(level, force)) {
@@ -378,7 +379,7 @@ class Logger {
             }
             headerMsg += ' ====>';
 
-            let dump = util.inspect(obj, true, null, true);
+            let dump = util.inspect(obj, true, depth, true);
 
             this.msg(`${headerMsg}\n${dump}`, level, force);
         }

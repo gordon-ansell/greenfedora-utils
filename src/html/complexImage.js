@@ -369,11 +369,11 @@ class ComplexImage
 
             name = name.trim();
 
-            if (name.startsWith('__')) {
+            if (name && name.startsWith('__')) {
                 continue;
             }
 
-            if (name.startsWith('@')) {
+            if (name && name.startsWith('@')) {
                 continue;
                 /*
                 wantMeta = true;
