@@ -30,7 +30,7 @@ const Postprocessor = require('./src/gf/template/postprocessor');
 const HtmlAttribs = require('./src/html/htmlAttribs');
 const HtmlGenerator = require('./src/html/htmlGenerator');
 const HtmlFigure = require('./src/html/htmlFigure');
-const ComplexImage = require('./src/html/ComplexImage');
+const ComplexImage = require('./src/html/complexImage');
 
 
 module.exports = {
