@@ -22,9 +22,9 @@ class Logger {
 
     /**
      * Buffer.
-     * @member {string}
+     * @member {string[]}
      */
-    _buffer = '';
+    _buffer = [];
 
     /**
      * Log level.
@@ -40,8 +40,8 @@ class Logger {
         trace: "gray",
         debug: "blue",
         info: "green",
-        log: "reset",
-        notice: ["reset", "bold"],
+        log: "cyan",
+        notice: "reset",
         warn: "red",
         error: ["bold", "red"]
     };
@@ -131,12 +131,13 @@ class Logger {
      * Send a message to buffer.
      * 
      * @param   {string}                                msg             Message to send.
+     * @param   {string}                                lvl             Message level.
      * 
      * @return  {Logger}
      */
-    buffer(msg)
+    buffer(msg, lvl = 'notice')
     {
-        this._buffer += msg;
+        this._buffer.push({message: msg, level: lvl});
         return this;
     }
 
@@ -148,7 +149,7 @@ class Logger {
     bufferClose()
     {
         let ret = this._buffer;
-        this._buffer = '';
+        this._buffer = [];
         return ret;
     }
 
