@@ -172,7 +172,6 @@ class ComplexImage
         }
 
         let ph = files.filter(f => f.width === this.config.placeholderWidth);
-        syslog.inspect(ph)
 
         let filtered = files.filter(f => f.width !== this.config.placeholderWidth);
         //filtered.reverse();
@@ -466,11 +465,11 @@ class ComplexImage
 
             if (this.lazyload) {
                 // Standard.
-                //if (this.config.usePlaceholder) {
-                //    this.imgGen.setAttrib('src', this.qualify(imageSrc));
-                //} else {
+                if (this.config.usePlaceholder) {
+                    this.imgGen.setAttrib('src', this.qualify(imageSrc));
+                } else {
                     this.imgGen.setAttrib('src', qsrc);
-                //}
+                }
                 this.imgGen.setAttrib('data-src', biggestFile);
                 this.imgGen.setAttrib('width', biggest.width);
                 this.imgGen.setAttrib('height', biggest.height);
