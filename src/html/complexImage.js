@@ -398,11 +398,12 @@ class ComplexImage
         let ret = '';
         let savedBiggestLink = null;
 
-        // This is the plain source file, qualified.
-        let qsrc = this.qualify(src);
 
         // If this is simple.
         if (null === base) {
+
+            // This is the plain source file, qualified.
+            let qsrc = this.qualify(src);
 
             // Load in the src.
             this.imgGen.setAttrib('src', qsrc);
@@ -426,6 +427,9 @@ class ComplexImage
 
         // If this complex.
         } else {
+
+            // This is the plain source file, qualified.
+            let qsrc = this.qualify(base);
 
             // Generate the source statements.
             let sources = [];
