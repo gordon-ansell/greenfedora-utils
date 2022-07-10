@@ -172,7 +172,7 @@ class ComplexImage
         }
 
         let filtered = files.filter(f => f.width !== this.config.placeholderWidth);
-        filtered.reverse();
+        //filtered.reverse();
 
         // Loop for each file.
         for (let item of filtered) {
