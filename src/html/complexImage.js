@@ -171,8 +171,11 @@ class ComplexImage
             //syslog.warning(`Really small images and lazyloading is a problem. Maybe use 'simpleimg' instead: ${files[0].file}`);
         }
 
+        let filtered = files.filter(f => f.width !== this.config.placeholderWidth);
+        filtered.reverse();
+
         // Loop for each file.
-        for (let item of files.filter(f => f.width !== this.config.placeholderWidth)) {
+        for (let item of filtered) {
 
             // Skip the placeholder.
             /*
