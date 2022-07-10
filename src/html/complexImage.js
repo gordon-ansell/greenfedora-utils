@@ -172,7 +172,7 @@ class ComplexImage
         }
 
         // Loop for each file.
-        for (let item of files.reverse().filter(f => f.width !== this.config.placeholderWidth)) {
+        for (let item of files.filter(f => f.width !== this.config.placeholderWidth)) {
 
             // Skip the placeholder.
             /*
