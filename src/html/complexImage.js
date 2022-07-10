@@ -398,11 +398,13 @@ class ComplexImage
         let ret = '';
         let savedBiggestLink = null;
 
+        // This is the plain source file, qualified.
+        let qsrc = this.qualify(src);
+
         // If this is simple.
         if (null === base) {
 
             // Load in the src.
-            let qsrc = this.qualify(src);
             this.imgGen.setAttrib('src', qsrc);
             if (this.lazyload) {
                 this.imgGenNoScript.setAttrib('src', qsrc);
@@ -454,7 +456,11 @@ class ComplexImage
 
             if (this.lazyload) {
                 // Standard.
-                this.imgGen.setAttrib('src', this.qualify(imageSrc));
+                if (this.config.usePlaceholder) {
+                    this.imgGen.setAttrib('src', this.qualify(imageSrc));
+                } else {
+                    this.imgGen.setAttrib('src', qsrc);
+                }
                 this.imgGen.setAttrib('data-src', biggestFile);
                 this.imgGen.setAttrib('width', biggest.width);
                 this.imgGen.setAttrib('height', biggest.height);
